@@ -31,6 +31,7 @@ AWS CLI – A command line tool for working with AWS services, including Amazon 
 
 ```
 apt install awscli -y
+apt install python3-pip
 pip install awscli --upgrade
 ```
 ```
