@@ -1,11 +1,16 @@
-do prerequisite first
-# prerequisites
+# K8s end-to-end deployment
+
+AWS Management console and create Amazon linux
+
+## prerequisites
+
 
 kubectl – A command line tool for working with Kubernetes clusters.
 
 ```
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-
+```
+```
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
@@ -32,7 +37,11 @@ AWS CLI – A command line tool for working with AWS services, including Amazon 
 
 ```
 apt install awscli -y
+```
+```
 apt install python3-pip
+```
+```
 pip install awscli --upgrade
 ```
 ```
