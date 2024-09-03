@@ -133,3 +133,10 @@ kubectl get deployment -n kube-system aws-load-balancer-controller
 ```
 
 
+Now, you will see the address
+```
+kubectl get ingree-n game-2048
+```
+go to loadbalancer 
+
+copy DNS name
