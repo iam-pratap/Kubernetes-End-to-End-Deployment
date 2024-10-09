@@ -37,13 +37,15 @@ AWS CLI – A command line tool for working with AWS services, including Amazon 
 
 ```
 apt install awscli -y
-```
-```
 apt install python3-pip
-```
-```
 pip install awscli --upgrade
 ```
+Update AWS CLI
+
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo unzip awscliv2.zip
+sudo ./aws/install
 ```
 aws configure
 ```
@@ -54,14 +56,14 @@ in cmd
 
 create eks cluster
 ```
-eksctl create cluster --name demo-cluster --region <name> --fargate
+eksctl create cluster --name demo-cluster --region <region-name> --fargate
 ```
 
 go to the console and see cluster is created or not
 
 update kubeconfig file
 ```
-aws eks update-kubeconfig --name demo-cluster --region <rname>
+aws eks update-kubeconfig --name demo-cluster --region <region-name>
 ```
 ### Deploy of application
 
@@ -117,7 +119,7 @@ oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identit
 If not, run the below command
 
 ```
-eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+eksctl utils associate-iam-oidc-provider --cluster <cluster-name> --approve
 ```
 
 # How to setup alb add on
@@ -150,6 +152,14 @@ eksctl create iamserviceaccount \
 
 ## Deploy ALB controller
 
+Install and configure helm
+
+```
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
 Add helm repo
 
 ```
@@ -165,8 +175,7 @@ helm repo update eks
 Install
 
 ```
-helm install aws-load-balancer-controller eks/aws-load-balancer-controller \            
-  -n kube-system \
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system \
   --set clusterName=<your-cluster-name> \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller \
